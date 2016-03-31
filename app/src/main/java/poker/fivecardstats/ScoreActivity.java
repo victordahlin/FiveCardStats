@@ -12,7 +12,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import poker.fivecardstats.adapter.UsersAdapter;
+import poker.fivecardstats.adapter.ScoreAdapter;
 import poker.fivecardstats.model.User;
 
 public class ScoreActivity extends AppCompatActivity {
@@ -24,7 +24,7 @@ public class ScoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
-        mRecyclerView = (RecyclerView) findViewById(R.id.rUsers);
+        mRecyclerView = (RecyclerView) findViewById(R.id.r_users);
 
         // Improve layout size of the RecycleView
         mRecyclerView.setHasFixedSize(true);
@@ -57,7 +57,7 @@ public class ScoreActivity extends AppCompatActivity {
         users.add(new User("Malin"));
         users.add(new User("Ulla"));
 
-        mAdapter = new UsersAdapter(users);
+        mAdapter = new ScoreAdapter(users);
         mRecyclerView.setAdapter(mAdapter);
     }
 

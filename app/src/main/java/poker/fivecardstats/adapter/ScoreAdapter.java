@@ -14,7 +14,7 @@ import poker.fivecardstats.model.User;
 /**
  * Created by Victor on 2016-03-28.
  */
-public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> {
+public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> {
     private ArrayList<User> mUsers;
 
     /**
@@ -24,25 +24,28 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTvName;
+        public TextView mTvPoints;
 
-        public ViewHolder(View v, TextView mTvName) {
+        public ViewHolder(View v, TextView mTvName, TextView mTvPoints) {
             super(v);
             this.mTvName = mTvName;
+            this.mTvPoints = mTvPoints;
         }
     }
 
-    public UsersAdapter(ArrayList<User> users) {
+    public ScoreAdapter(ArrayList<User> users) {
         this.mUsers = users;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public UsersAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_list, parent, false);
+    public ScoreAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.score_list, parent, false);
         // Lookup view for data population
         TextView tvName = (TextView) v.findViewById(R.id.tv_name);
+        TextView tvPoints = (TextView) v.findViewById(R.id.tv_points);
 
-        return new ViewHolder(v, tvName);
+        return new ViewHolder(v, tvName, tvPoints);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -51,6 +54,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         User user = mUsers.get(position);
 
         holder.mTvName.setText(user.getName());
+        holder.mTvPoints.setText(user.getPoints() + "p");
     }
 
     // Return the size of your dataset (invoked by the layout manager)

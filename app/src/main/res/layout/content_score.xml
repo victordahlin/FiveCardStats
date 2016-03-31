@@ -17,7 +17,7 @@
         android:paddingTop="@dimen/fab_margin">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rUsers"
+            android:id="@+id/r_users"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical">
