@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="card_score_array">
+        <item>Par</item>
+        <item>Två par</item>
+        <item>Triss</item>
+        <item>Stege</item>
+        <item>Färg</item>
+        <item>Kåk</item>
+        <item>Fyrtal</item>
+        <item>Royal street flush</item>
+    </string-array>
+</resources>

@@ -6,10 +6,21 @@ package poker.fivecardstats.model;
 public class User {
     private String name;
     private int points;
+    private long id;
 
     public User(String name) {
         this.name = name;
         this.points = 0;
+    }
+
+    public User(Long id, String name, int points) {
+        this.id = id;
+        this.name = name;
+        this.points = points;
+    }
+
+    public long getId() {
+        return id;
     }
 
     /**

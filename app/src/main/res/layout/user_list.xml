@@ -1,11 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_horizontal_margin">
 
         <TextView
             android:id="@+id/tv_name"
@@ -15,12 +16,14 @@
             android:layout_weight="1"
             android:textSize="@dimen/text" />
 
-        <Button
+        <TextView
+            android:id="@+id/tv_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:onClick="onClick"
-            android:text="@string/button_delete" />
+            android:textAlignment="textEnd"
+            android:textSize="@dimen/text" />
 
     </LinearLayout>
 

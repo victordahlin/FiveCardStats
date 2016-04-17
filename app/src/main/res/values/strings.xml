@@ -4,7 +4,7 @@
     <string name="title_activity_detail">DetailActivity</string>
 
     <string name="button_add">Lägg till nytt resultat</string>
-    <string name="button_add_person">Lägg till ny person</string>
+    <string name="button_add_person">Ny spelare</string>
     <string name="button_reset">Nollställ</string>
     <string name="button_detail">Detaljer</string>
     <string name="button_game">Till spel</string>
@@ -13,5 +13,6 @@
     <string name="title_activity_res">ResActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_add_player">AddPlayerActivity</string>
 
 </resources>
