@@ -46,32 +46,6 @@ public class ScoreDataSource {
         return db.insert(MySQLiteHelper.TABLE_SCORE, null, values) > 0;
     }
 
-    public void update(String id, String type, int score) {
-        long rowId = 0;
-        Cursor c = db.rawQuery("SELECT * FROM " + MySQLiteHelper.TABLE_SCORE, null);
-
-        if (c.moveToFirst()) {
-            rowId = c.getLong(c.getColumnIndex(MySQLiteHelper.COLUMN_ID));
-
-            String where = MySQLiteHelper.COLUMN_ID + " = ?";
-            String[] whereArgs = {Long.toString(rowId)};
-
-            ContentValues values = new ContentValues();
-            values.put(MySQLiteHelper.COLUMN_USER_ID, id);
-            values.put(MySQLiteHelper.COLUMN_TYPE, type);
-            values.put(MySQLiteHelper.COLUMN_SCORE, score);
-
-            db.update(MySQLiteHelper.TABLE_USER, values, where, whereArgs);
-        } else {
-            create(rowId, type, score);
-        }
-        c.close();
-    }
-
-    public int size() {
-        return db.rawQuery("SELECT * FROM " + MySQLiteHelper.TABLE_SCORE, null).getCount();
-    }
-
     public void delete(long uId) {
         String query = "SELECT * FROM " + MySQLiteHelper.TABLE_SCORE + ";";
         Cursor c = db.rawQuery(query, null);

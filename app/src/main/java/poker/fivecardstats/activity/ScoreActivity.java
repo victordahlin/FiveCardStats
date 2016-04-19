@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -107,7 +106,7 @@ public class ScoreActivity extends AppCompatActivity {
                         if(type.contains("Fyrtal")) {
                             mScoreDataSource.delete(id);
                         }
-                        
+
                         updateList();
                     }
                 }).show();
@@ -146,7 +145,7 @@ public class ScoreActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            return false;
         }
         return super.onOptionsItemSelected(item);
     }

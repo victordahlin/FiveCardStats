@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private List<User> mUsers;
     private  UsersAdapter mAdapter;
+    private int TOTAL_PLAYERS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,18 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         fabManager();
+
+        clearButtonOnClick();
+    }
+
+    private void clearButtonOnClick() {
+        Button clear = (Button) findViewById(R.id.clear_button);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mUserDataSource.resetAllScores();
+            }
+        });
     }
 
     private void fabManager() {
@@ -63,7 +77,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String name = etName.getText().toString();
 
-                        mUserDataSource.create(name, 0);
+                        if(name.isEmpty()) {
+                            name = "Player" + TOTAL_PLAYERS;
+                            TOTAL_PLAYERS++;
+                        }
+
+                        mUserDataSource.create(name);
                         updateList();
                     }
                 }).show();
@@ -80,9 +99,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 User u = mUsers.get(position);
 
-                Intent score = new Intent(MainActivity.this, ScoreActivity.class);
-                score.putExtra("id", u.getId());
-                startActivity(score);
+                Intent userIntent = new Intent(MainActivity.this, UserActivity.class);
+                userIntent.putExtra("id", u.getId());
+                userIntent.putExtra("name", u.getName());
+                startActivity(userIntent);
             }
         });
     }

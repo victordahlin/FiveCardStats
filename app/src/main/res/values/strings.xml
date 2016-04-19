@@ -1,18 +1,23 @@
 <resources>
     <string name="app_name">FiveCardStats</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_detail">DetailActivity</string>
 
-    <string name="button_add">Lägg till nytt resultat</string>
-    <string name="button_add_person">Ny spelare</string>
-    <string name="button_reset">Nollställ</string>
-    <string name="button_detail">Detaljer</string>
-    <string name="button_game">Till spel</string>
-    <string name="button_delete">Ta bort person</string>
+    <!-- Main -->
+    <string name="main_clear_button">Nollställ</string>
+
+    <!-- User -->
+    <string name="user_name_editttext">Namn</string>
+    <string name="user_scores_button">Resultat</string>
+    <string name="user_delete_player_button">Ta bort spelare</string>
+    <string name="user_save_button">Spara</string>
+    <string name="user_name_update">Namn uppdaterad!</string>
+
+    <!-- Activity -->
     <string name="title_activity_score">ScoreActivity</string>
     <string name="title_activity_res">ResActivity</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_registration">RegistrationActivity</string>
     <string name="title_activity_add_player">AddPlayerActivity</string>
+    <string name="title_activity_user">UserActivity</string>
+
 
 </resources>

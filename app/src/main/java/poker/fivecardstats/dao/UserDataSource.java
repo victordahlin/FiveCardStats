@@ -34,37 +34,59 @@ public class UserDataSource {
         dbHelper.close();
     }
 
-    public Boolean create(String name, int score) {
+    public Boolean create(String name) {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NAME, name);
-        values.put(MySQLiteHelper.COLUMN_SCORE, score);
 
         return db.insert(MySQLiteHelper.TABLE_USER, null, values) > 0;
     }
 
-    public void update(String name, int score) {
-        long rowId;
+    public void update(String name, long uId) {
         Cursor c = db.rawQuery("SELECT * FROM " + MySQLiteHelper.TABLE_USER, null);
 
-        if (c.moveToFirst()) {
-            rowId = c.getLong(c.getColumnIndex(MySQLiteHelper.COLUMN_ID));
+        if(c.moveToFirst()) {
+            long userId = c.getLong(c.getColumnIndex(MySQLiteHelper.COLUMN_ID));
 
-            String where = MySQLiteHelper.COLUMN_ID + " = ?";
-            String[] whereArgs = {Long.toString(rowId)};
+            if(userId == uId) {
+                String where = MySQLiteHelper.COLUMN_ID + " = ?";
+                String[] whereArgs = { Long.toString(userId)};
 
-            ContentValues values = new ContentValues();
-            values.put(MySQLiteHelper.COLUMN_NAME, name);
-            values.put(MySQLiteHelper.COLUMN_SCORE, score);
+                ContentValues values = new ContentValues();
+                values.put(MySQLiteHelper.COLUMN_NAME, name);
 
-            db.update(MySQLiteHelper.TABLE_USER, values, where, whereArgs);
+                db.update(MySQLiteHelper.TABLE_USER, values, where, whereArgs);
+            }
         } else {
-            create(name, score);
+            create(name);
+        }
+        c.close();
+    }
+    public void delete(long uId) {
+        db.delete(MySQLiteHelper.TABLE_USER,
+                MySQLiteHelper.COLUMN_ID + "=" + uId,
+                null);
+
+        String query = "SELECT * FROM " + MySQLiteHelper.TABLE_SCORE + ";";
+        Cursor c = db.rawQuery(query, null);
+
+        if (c.moveToFirst()) {
+            do {
+                Long id = c.getLong(c.getColumnIndex(MySQLiteHelper.COLUMN_ID));
+                long userId = c.getLong(c.getColumnIndex(MySQLiteHelper.COLUMN_USER_ID));
+
+                if(uId == userId) {
+                    db.delete(MySQLiteHelper.TABLE_SCORE,
+                            MySQLiteHelper.COLUMN_ID + "=" + id,
+                            null);
+
+                }
+            } while (c.moveToNext());
         }
         c.close();
     }
 
-    public int size() {
-        return db.rawQuery("SELECT * FROM " + MySQLiteHelper.TABLE_USER, null).getCount();
+    public void resetAllScores() {
+        db.delete(MySQLiteHelper.TABLE_SCORE, null, null);
     }
 
     public List<User> getUsers() {
