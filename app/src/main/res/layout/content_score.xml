@@ -17,6 +17,14 @@
         android:layout_weight="1"
         android:nestedScrollingEnabled="true"></ListView>
 
+    <TextView
+        android:id="@+id/total_score_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:text="Total: 100p" />
+
     <Button
         android:id="@+id/delete_player_button"
         android:layout_width="match_parent"
